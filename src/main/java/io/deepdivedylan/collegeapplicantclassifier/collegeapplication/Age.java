@@ -24,7 +24,7 @@ public class Age implements ApplicationField<Integer> {
 
     @Override
     public boolean accept() {
-        return age >= 17 && age < 26;
+        return true;
     }
 
     @Override
