@@ -1,4 +1,4 @@
-package io.deepdivedylan.collegeapplicationclassifier;
+package io.deepdivedylan.collegeapplicantclassifier;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
