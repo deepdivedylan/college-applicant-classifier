@@ -6,14 +6,13 @@ import java.time.Period;
 public class Felony implements ApplicationField<LocalDate> {
     private LocalDate date;
 
-    @Override
-    public String getName() {
-        return "felony";
+    public Felony(LocalDate newDate) {
+        date = newDate;
     }
 
     @Override
-    public void setValue(LocalDate newValue) {
-        date = newValue;
+    public String getName() {
+        return "felony";
     }
 
     @Override

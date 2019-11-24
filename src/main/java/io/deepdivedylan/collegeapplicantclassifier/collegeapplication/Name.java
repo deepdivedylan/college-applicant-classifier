@@ -5,14 +5,13 @@ import java.util.regex.Pattern;
 public class Name implements ApplicationField<String> {
     private String name;
 
-    @Override
-    public String getName() {
-        return "name";
+    public Name(String newName) {
+        name = newName;
     }
 
     @Override
-    public void setValue(String newValue) {
-        name = newValue;
+    public String getName() {
+        return "name";
     }
 
     @Override

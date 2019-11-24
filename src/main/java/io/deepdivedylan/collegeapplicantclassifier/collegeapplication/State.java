@@ -3,14 +3,13 @@ package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 public class State implements ApplicationField<String> {
     private String state;
 
-    @Override
-    public String getName() {
-        return "state";
+    public State(String newState) {
+        state = newState;
     }
 
     @Override
-    public void setValue(String newValue) {
-        state = newValue;
+    public String getName() {
+        return "state";
     }
 
     @Override

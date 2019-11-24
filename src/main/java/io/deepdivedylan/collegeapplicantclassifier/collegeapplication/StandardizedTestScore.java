@@ -5,14 +5,13 @@ import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.Stan
 public class StandardizedTestScore implements ApplicationField<StandardizedTestScoreField> {
     private StandardizedTestScoreField standardizedTestScoreField;
 
-    @Override
-    public String getName() {
-        return standardizedTestScoreField.getStandardizedTest().name();
+    public StandardizedTestScore(StandardizedTestScoreField newStandardizedTestScoreField) {
+        standardizedTestScoreField = newStandardizedTestScoreField;
     }
 
     @Override
-    public void setValue(StandardizedTestScoreField newValue) {
-        standardizedTestScoreField = newValue;
+    public String getName() {
+        return standardizedTestScoreField.getStandardizedTest().name();
     }
 
     @Override

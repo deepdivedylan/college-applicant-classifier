@@ -5,14 +5,13 @@ import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.GpaF
 public class Gpa implements ApplicationField<GpaField> {
     private GpaField gpa;
 
-    @Override
-    public String getName() {
-        return "gpa";
+    public Gpa(GpaField newGpa) {
+        gpa = newGpa;
     }
 
     @Override
-    public void setValue(GpaField newValue) {
-        gpa = newValue;
+    public String getName() {
+        return "gpa";
     }
 
     @Override
