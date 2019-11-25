@@ -21,12 +21,12 @@ public class Name implements ApplicationField<String> {
 
     @Override
     public boolean accept() {
-        Pattern regex = Pattern.compile("^([A-Z][A-Za-z]*)(\\s[A-Z][A-Za-z]*)*$");
-        return regex.matcher(name).matches();
+        return true;
     }
 
     @Override
     public boolean reject() {
-        return false;
+        Pattern regex = Pattern.compile("^([A-Z][A-Za-z]*)(\\s[A-Z][A-Za-z]*)*$");
+        return !regex.matcher(name).matches();
     }
 }
