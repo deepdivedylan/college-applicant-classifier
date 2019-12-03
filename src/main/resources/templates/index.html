@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>College Applications</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h1>College Applications</h1>
+        <table border="1">
+            <tr>
+                <th>Application Id</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Age</th>
+                <th>State</th>
+                <th>Name</th>
+                <th>GPA</th>
+                <th>Test Score</th>
+            </tr>
+            <tr th:each="collegeApplication: ${collegeApplications}">
+                <td th:text="${collegeApplication.id}" />
+                <td th:text="${collegeApplication.applicationDate}" />
+                <td th:text="${collegeApplication.status}" />
+                <td th:text="${collegeApplication.fields.get(0).getValue()}" />
+                <td th:text="${collegeApplication.fields.get(1).getValue()}" />
+                <td th:text="${collegeApplication.fields.get(2).getValue()}" />
+                <td th:text="${collegeApplication.fields.get(3).getValue()}" />
+                <td th:text="${collegeApplication.fields.get(4).getValue()}" />
+            </tr>
+        </table>
+    </body>
+</html>

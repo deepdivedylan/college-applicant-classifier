@@ -16,4 +16,9 @@ public class GpaField {
     public double getPerfectGpa() {
         return perfectGpa;
     }
+
+    @Override
+    public String toString() {
+        return gpa + " / " + perfectGpa;
+    }
 }
