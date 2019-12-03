@@ -1,5 +1,7 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
+
 public class State implements ApplicationField<String> {
     private String state;
 
@@ -18,12 +20,12 @@ public class State implements ApplicationField<String> {
     }
 
     @Override
-    public boolean accept() {
-        return true;
+    public ThreeValueLogic accept() {
+        return ThreeValueLogic.INDETERMINATE;
     }
 
     @Override
-    public boolean reject() {
-        return false;
+    public ThreeValueLogic reject() {
+        return ThreeValueLogic.INDETERMINATE;
     }
 }

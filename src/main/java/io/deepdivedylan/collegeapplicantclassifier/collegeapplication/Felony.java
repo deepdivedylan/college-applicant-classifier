@@ -1,5 +1,7 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
+
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -21,14 +23,14 @@ public class Felony implements ApplicationField<LocalDate> {
     }
 
     @Override
-    public boolean accept() {
-        return true;
+    public ThreeValueLogic accept() {
+        return ThreeValueLogic.INDETERMINATE;
     }
 
     @Override
-    public boolean reject() {
+    public ThreeValueLogic reject() {
         LocalDate now = LocalDate.now();
         Period timeSince = Period.between(date, now);
-        return timeSince.getYears() < 5;
+        return ThreeValueLogic.fromBoolean(timeSince.getYears() < 5);
     }
 }

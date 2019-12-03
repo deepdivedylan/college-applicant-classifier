@@ -1,6 +1,7 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
 import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.GpaField;
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
 
 public class Gpa implements ApplicationField<GpaField> {
     private GpaField gpa;
@@ -20,12 +21,12 @@ public class Gpa implements ApplicationField<GpaField> {
     }
 
     @Override
-    public boolean accept() {
-        return (gpa.getGpa() / gpa.getPerfectGpa()) > 0.9;
+    public ThreeValueLogic accept() {
+        return ThreeValueLogic.fromBoolean((gpa.getGpa() / gpa.getPerfectGpa()) > 0.9);
     }
 
     @Override
-    public boolean reject() {
-        return (gpa.getGpa() / gpa.getPerfectGpa()) < 0.7;
+    public ThreeValueLogic reject() {
+        return ThreeValueLogic.fromBoolean((gpa.getGpa() / gpa.getPerfectGpa()) < 0.7);
     }
 }

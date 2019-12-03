@@ -1,6 +1,7 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
 import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.StandardizedTestScoreField;
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
 
 public class StandardizedTestScore implements ApplicationField<StandardizedTestScoreField> {
     private StandardizedTestScoreField standardizedTestScoreField;
@@ -20,12 +21,12 @@ public class StandardizedTestScore implements ApplicationField<StandardizedTestS
     }
 
     @Override
-    public boolean accept() {
-        return standardizedTestScoreField.getScore() >= standardizedTestScoreField.getStandardizedTest().getMinimumScore();
+    public ThreeValueLogic accept() {
+        return ThreeValueLogic.fromBoolean(standardizedTestScoreField.getScore() >= standardizedTestScoreField.getStandardizedTest().getMinimumScore());
     }
 
     @Override
-    public boolean reject() {
-        return false;
+    public ThreeValueLogic reject() {
+        return ThreeValueLogic.INDETERMINATE;
     }
 }

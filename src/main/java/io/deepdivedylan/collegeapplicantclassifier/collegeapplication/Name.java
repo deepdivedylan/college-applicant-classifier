@@ -1,5 +1,7 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
+
 import java.util.regex.Pattern;
 
 public class Name implements ApplicationField<String> {
@@ -20,13 +22,13 @@ public class Name implements ApplicationField<String> {
     }
 
     @Override
-    public boolean accept() {
-        return true;
+    public ThreeValueLogic accept() {
+        return ThreeValueLogic.INDETERMINATE;
     }
 
     @Override
-    public boolean reject() {
+    public ThreeValueLogic reject() {
         Pattern regex = Pattern.compile("^([A-Z][A-Za-z]*)(\\s[A-Z][A-Za-z]*)*$");
-        return !regex.matcher(name).matches();
+        return ThreeValueLogic.fromBoolean(!regex.matcher(name).matches());
     }
 }

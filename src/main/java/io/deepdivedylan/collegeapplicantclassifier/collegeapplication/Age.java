@@ -1,5 +1,7 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
+
 public class Age implements ApplicationField<Integer> {
     private Integer age;
 
@@ -18,12 +20,12 @@ public class Age implements ApplicationField<Integer> {
     }
 
     @Override
-    public boolean accept() {
-        return true;
+    public ThreeValueLogic accept() {
+        return ThreeValueLogic.INDETERMINATE;
     }
 
     @Override
-    public boolean reject() {
-        return age < 0;
+    public ThreeValueLogic reject() {
+        return ThreeValueLogic.fromBoolean(age < 0);
     }
 }
