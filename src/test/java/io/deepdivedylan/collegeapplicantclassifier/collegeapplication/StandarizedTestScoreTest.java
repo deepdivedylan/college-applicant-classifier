@@ -2,10 +2,11 @@ package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
 import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.StandardizedTest;
 import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.StandardizedTestScoreField;
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StandarizedTestScoreTest {
     private int[] failingScores = new int[] {26, 1919};
@@ -44,20 +45,20 @@ public class StandarizedTestScoreTest {
     @Test
     public void testAcceptsPassingScores() {
         for (StandardizedTestScore standardizedTestScore : failingStandardizedTestScores) {
-            assertFalse(standardizedTestScore.accept());
+            assertEquals(standardizedTestScore.accept(), ThreeValueLogic.FALSE);
         }
         for (StandardizedTestScore standardizedTestScore : passingStandardizedTestScores) {
-            assertTrue(standardizedTestScore.accept());
+            assertEquals(standardizedTestScore.accept(), ThreeValueLogic.TRUE);
         }
     }
 
     @Test
     public void testNeverReject() {
         for (StandardizedTestScore standardizedTestScore : failingStandardizedTestScores) {
-            assertFalse(standardizedTestScore.reject());
+            assertEquals(standardizedTestScore.reject(), ThreeValueLogic.INDETERMINATE);
         }
         for (StandardizedTestScore standardizedTestScore : passingStandardizedTestScores) {
-            assertFalse(standardizedTestScore.reject());
+            assertEquals(standardizedTestScore.reject(), ThreeValueLogic.INDETERMINATE);
         }
     }
 }

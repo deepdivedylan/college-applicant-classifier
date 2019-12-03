@@ -1,9 +1,10 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AgeTest {
     private Age age;
@@ -22,13 +23,13 @@ public class AgeTest {
 
     @Test
     public void testAlwaysAccept() {
-        assertTrue(age.accept());
+        assertEquals(age.accept(), ThreeValueLogic.INDETERMINATE);
     }
 
     @Test
     public void testRejectNegativeAges() {
         Age negativeAge = new Age(-testAge);
-        assertFalse(age.reject());
-        assertTrue(negativeAge.reject());
+        assertEquals(age.reject(), ThreeValueLogic.FALSE);
+        assertEquals(negativeAge.reject(), ThreeValueLogic.TRUE);
     }
 }

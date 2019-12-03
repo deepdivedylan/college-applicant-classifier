@@ -1,9 +1,10 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NameTest {
     private Name name;
@@ -23,13 +24,13 @@ public class NameTest {
 
     @Test
     public void testAlwaysAccept() {
-        assertTrue(name.accept());
+        assertEquals(name.accept(), ThreeValueLogic.INDETERMINATE);
     }
 
     @Test
     public void testRejectIrregularNames() {
         Name badName = new Name("Jean-Luc Picard");
-        assertFalse(name.reject());
-        assertTrue(badName.reject());
+        assertEquals(name.reject(), ThreeValueLogic.FALSE);
+        assertEquals(badName.reject(), ThreeValueLogic.TRUE);
     }
 }

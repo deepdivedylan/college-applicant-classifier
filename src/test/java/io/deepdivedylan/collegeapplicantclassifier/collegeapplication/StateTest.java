@@ -1,9 +1,10 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StateTest {
     private State state;
@@ -23,11 +24,11 @@ public class StateTest {
 
     @Test
     public void testAlwaysAccept() {
-        assertTrue(state.accept());
+        assertEquals(state.accept(), ThreeValueLogic.INDETERMINATE);
     }
 
     @Test
     public void testNeverReject() {
-        assertFalse(state.reject());
+        assertEquals(state.reject(), ThreeValueLogic.INDETERMINATE);
     }
 }

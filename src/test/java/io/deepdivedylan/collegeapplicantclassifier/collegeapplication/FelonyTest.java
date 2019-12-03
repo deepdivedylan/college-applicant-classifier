@@ -1,11 +1,12 @@
 package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FelonyTest {
     private Felony felony;
@@ -25,14 +26,14 @@ public class FelonyTest {
 
     @Test
     public void testAlwaysAccept() {
-        assertTrue(felony.accept());
+        assertEquals(felony.accept(), ThreeValueLogic.INDETERMINATE);
     }
 
     @Test
     public void testRejectOldFelonies() {
         LocalDate fiveYearsBack = now.minusYears(5);
         Felony oldFelony = new Felony(fiveYearsBack);
-        assertTrue(felony.reject());
-        assertFalse(oldFelony.reject());
+        assertEquals(felony.reject(), ThreeValueLogic.TRUE);
+        assertEquals(oldFelony.reject(), ThreeValueLogic.FALSE);
     }
 }

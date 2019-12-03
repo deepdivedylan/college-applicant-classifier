@@ -2,11 +2,11 @@ package io.deepdivedylan.collegeapplicantclassifier.collegeapplication.rules;
 
 import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.Age;
 import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.State;
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InStateTest {
     private Age age;
@@ -22,7 +22,7 @@ public class InStateTest {
 
     @Test
     public void testAcceptYoungCalifornian() {
-        assertTrue(rule.accept());
+        assertEquals(rule.accept(), ThreeValueLogic.TRUE);
     }
 
     @Test
@@ -30,13 +30,13 @@ public class InStateTest {
         Age oldFolk = new Age(86);
         State outOfState = new State("NM");
         InState oldFolksRule = new InState(oldFolk, outOfState);
-        assertTrue(oldFolksRule.accept());
+        assertEquals(oldFolksRule.accept(), ThreeValueLogic.TRUE);
     }
 
     @Test
     public void testRejectOtherPeople() {
         Age middleAged = new Age(42);
         InState middleAgedRule = new InState(middleAged, state);
-        assertFalse(middleAgedRule.accept());
+        assertEquals(middleAgedRule.accept(), ThreeValueLogic.FALSE);
     }
 }
