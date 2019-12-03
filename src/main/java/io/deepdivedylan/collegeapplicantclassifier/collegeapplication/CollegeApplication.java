@@ -2,6 +2,7 @@ package io.deepdivedylan.collegeapplicantclassifier.collegeapplication;
 
 import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.rules.Rule;
 import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ApplicationStatus;
+import io.deepdivedylan.collegeapplicantclassifier.collegeapplication.types.ThreeValueLogic;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -46,15 +47,15 @@ public class CollegeApplication {
     public void addField(ApplicationField field) {
         fields.add(field);
 
-        boolean accept = true;
-        boolean reject = false;
+        ThreeValueLogic accept = ThreeValueLogic.INDETERMINATE;
+        ThreeValueLogic reject = ThreeValueLogic.INDETERMINATE;
         for (ApplicationField applicationField : fields) {
-            accept = accept && applicationField.accept();
-            reject = reject || applicationField.reject();
+            accept = ThreeValueLogic.and(accept, applicationField.accept());
+            reject = ThreeValueLogic.or(reject, applicationField.reject());
         }
-        if (reject) {
+        if (reject == ThreeValueLogic.TRUE) {
             status = ApplicationStatus.INSTANT_REJECT;
-        } else if (accept) {
+        } else if (accept == ThreeValueLogic.TRUE) {
             status = ApplicationStatus.INSTANT_ACCEPT;
         }
     }
@@ -73,9 +74,9 @@ public class CollegeApplication {
 
         if (left != null && right != null) {
             rules.add(rule);
-            if (rule.reject()) {
+            if (rule.reject() == ThreeValueLogic.TRUE) {
                 status = ApplicationStatus.INSTANT_REJECT;
-            } else if (rule.accept()) {
+            } else if (rule.accept() == ThreeValueLogic.TRUE) {
                 status = ApplicationStatus.INSTANT_ACCEPT;
             }
         }
