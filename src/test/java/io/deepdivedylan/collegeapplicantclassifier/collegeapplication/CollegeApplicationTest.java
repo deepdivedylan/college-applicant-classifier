@@ -35,7 +35,7 @@ public class CollegeApplicationTest {
         State state = new State("CA");
         collegeApplication.addField(age);
         collegeApplication.addField(state);
-        assertEquals(collegeApplication.getStatus(), ApplicationStatus.INSTANT_ACCEPT);
+        assertEquals(collegeApplication.getStatus(), ApplicationStatus.NEEDS_REVIEW);
         collegeApplication.addRule(new InState(age, state));
         assertEquals(collegeApplication.getStatus(), ApplicationStatus.INSTANT_ACCEPT);
     }
